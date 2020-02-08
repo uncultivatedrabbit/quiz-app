@@ -45,15 +45,10 @@ html {
   justify-content: center;
 }
 
-.start{
+.start, .answer-button{
   text-align: center;
 }
 
 fieldset {
   border: 0;
 }
-
-.answer-button{
-  text-align: center;
-}
-
