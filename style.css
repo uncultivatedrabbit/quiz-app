@@ -11,6 +11,21 @@ html {
   align-items: center;
 }
 
+
+/********* Grid Styling ***********/
+
+.answers {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: auto;
+}
+
+@media screen and (min-width: 1000px){
+  .answers{
+    grid-template-columns: auto auto;
+  }
+}
+
 /********* Header & Footer Styling ***********/
 
 .header-row, .footer {
@@ -33,3 +48,12 @@ html {
 .start{
   text-align: center;
 }
+
+fieldset {
+  border: 0;
+}
+
+.answer-button{
+  text-align: center;
+}
+

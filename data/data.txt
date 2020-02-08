@@ -1,0 +1,101 @@
+Question:
+
+1) What will this function return?
+
+function math(a,b){
+  return a + b;
+}
+
+math(5, 10)
+
+Answer: 15
+----------------------------------------------------
+Question:
+
+2) What is this function an example of?
+
+function factorial(n){
+  if (n <= 1) return 0;
+  return n * factorial(n - 1);
+}
+
+Answer: Recursion
+-----------------------------------------------------
+Question:
+
+3) Which Object method would be useful to turn an object into an array like such:
+
+toArray({ a: 1, b: 2 }) ➞ [["a", 1], ["b", 2]]
+
+Answer: Object.entries
+---------------------------------------------------------
+Question:
+
+4) Which regex equation could be used to determine if a string has the characters 'a' and 'c' (in that order) with zero or more 'b' characters between?
+
+function regexTest(string){
+  const regex = /*insert regex here*/
+  return regex.test(string)
+}
+
+Answer: /ab*c/
+---------------------------------------------------------
+Question:
+5) What does the following code do: 
+
+const arrayManipulation = arr => arr.filter(n => typeof n === 'number')
+
+Answer: take an array of different types and returns a new array with only numbers
+---------------------------------------------------------
+Question:
+6) Why does this code return false? 
+
+const obj1 = {name: "Brandon", awesomenessLevel: 1000}
+const obj2 = {name: "Brandon", awesomenessLevel: 1000}
+
+console.log(obj1 === obj2) // returns false
+
+Answer: 
+Because the objects exist in different places in memory, although they have the same values the objects are new and different.
+---------------------------------------------------------
+Question:
+7) What is NOT true of JSON
+
+1) JSON stands for JavaScript Object Notation
+2) JSON doesn't support null values // false
+3) JSON keys must be in quotations unlike regular JavaScript objects
+4) JSON is often used in GET AJAX requests
+
+---------------------------------------------------------
+Question:
+8) Why does this code not work? 
+
+function changeColor(newColor){
+  const el = document.getElementsByClassName('element')
+  el.style.color = newColor
+}
+
+Answer: 
+Because the method 'getElementsByClassName' returns a node list, which you must iterate over in order use its contents.
+
+---------------------------------------------------------
+Question:
+9) What is the time complexity of this function?
+
+const findIndex = (items, match) => {
+  for (let i = 0, total = items.length; i < total; i++)
+    if (items[i] == match)
+      return i;
+   return -1;
+};
+
+Answer: O(N)
+
+---------------------------------------------------------
+Question:
+
+How would you split this string representing time on a clock into an array of hours and seconds?
+
+const time = "02:21"
+
+Answer: time.split(':')
