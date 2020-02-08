@@ -1,0 +1,35 @@
+/********* Global Styling ***********/
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.row{
+  display: flex;
+  align-items: center;
+}
+
+/********* Header & Footer Styling ***********/
+
+.header-row, .footer {
+  justify-content: space-between;
+  height: 10vh;
+}
+
+
+/********* Main Styling ***********/
+.container {
+  width: 100vw;
+  height: 80vh;
+}
+.main-content{
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.start{
+  text-align: center;
+}
