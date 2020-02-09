@@ -4,11 +4,15 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  /* background: #111;
+  color: whitesmoke; */
 }
 
 .row{
   display: flex;
   align-items: center;
+  padding: 10px;
 }
 
 
@@ -36,8 +40,12 @@ html {
 
 /********* Main Styling ***********/
 .container {
-  width: 100vw;
-  height: 80vh;
+  height: 70vh;
+}
+
+.container, footer, .header-row {
+  width: 90vw;
+  margin: 0 auto;
 }
 .main-content{
   width: 100%;
