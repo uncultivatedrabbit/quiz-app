@@ -4,8 +4,8 @@ const STORE = {
       // Question 1
       id: 1,
       question: "What will this function return?",
-      answers: [5, 10, 15, 0],
-      correctAnswer: 15,
+      answers: ["5", "10", "15", "0"],
+      correctAnswer: "15",
       funcExample: `
       function math(a,b){
         return a + b;
@@ -13,7 +13,7 @@ const STORE = {
       
       math(5, 10);
       `,
-      explanation: "This function adds the arguments a and b together and returns their sum." 
+      explanation: "This function adds the arguments a and b together and returns their sum, giving us <b>15</b>." 
     },
     {
       // Question 2
@@ -27,7 +27,7 @@ const STORE = {
         return n * factorial(n - 1);
       }
       `,
-      explanation: "This function is an example of recursion, when a function calls itself."
+      explanation: "This function is an example of <b>recursion</b>, when a function calls itself."
     },
     {
       //Question 3
@@ -36,7 +36,7 @@ const STORE = {
       answers: ['Object.values()', 'Object.entries()', 'Object.keys()', 'Object.assign()'],
       correctAnswer: "Object.entries()",
       funcExample: `toArray({ a: 1, b: 2 }) ➞ [["a", 1], ["b", 2]]`,
-      explanation: 'Object.entries() takes an object and returns an array in the form ["key", "value"].'
+      explanation: '<b>Object.entries()</b> takes an object and returns an array in the form ["key", "value"].'
     },
     {
       //Question 4
@@ -49,7 +49,7 @@ const STORE = {
         const regex = /*insert regex here*/;
         return regex.test(string);
       }`,
-      explanation: "'*' in regex means 0 or more of any character."
+      explanation: "'*' in regex means 0 or more of any character, so <b>/ab*c/</b> means a followed by zero or more b characters followed by c."
     },
     {
       //Question 5
@@ -58,7 +58,7 @@ const STORE = {
       answers: ['Check if array has only numbers', 'Find index of all numbers in array', 'Remove numbers from array', 'Return a new array with only numbers'],
       correctAnswer: "Return a new array with only numbers",
       funcExample: `const arrayManipulation = arr => arr.filter(n => typeof n === 'number');`,
-      explanation: "The filter method returns an array of values that pass the condition in the provided function."
+      explanation: "The filter method returns an array of values that pass the condition in the provided function, <b>which here returns only number values</b>."
     },
     {
       //Question 6
@@ -71,30 +71,30 @@ const STORE = {
       const obj2 = {name: "Brandon", awesomenessLevel: 1000}
       
       console.log(obj1 === obj2) // returns false`,
-      explanation: "Objects (even ones with the exact same key and value pairs) are still unique and different pieces of data that exist in different places in memory."
+      explanation: "Objects (even ones with the exact same key and value pairs) are still unique and different pieces of data that exist <b>in different places in memory.</b>"
     },
     {
       //Question 7
       id: 7,
       question: "What is NOT true of JSON:",
-      answers: ['JSON stands for JavaScript Object Notation', "JSON doesn't support null values", 'JSON keys must be in quotations unlike regular JavaScript objects', 'JSON is often used in GET AJAX requests'],
-      correctAnswer: "JSON doesn't support null values",
+      answers: ['JSON stands for JavaScript Object Notation', `JSON doesn't support null values`, 'JSON keys must be in quotations unlike regular JavaScript objects', 'JSON is often used in GET AJAX requests'],
+      correctAnswer: `JSON doesn't support null values`,
       funcExample: null,
-      explanation: "JSON accepts strings, numbers, objects, arrays, booleans, and null values."
+      explanation: `JSON accepts strings, numbers, objects, arrays, booleans, <b>and null values</b>.`
     },
     {
       //Question 8
       id: 8,
       question: "Why won't this code work?",
-      answers: ['Incorrect use of "const"', '"getElementsByClassName" returns a node list, not a single element', "You can't change CSS using JavaScript", '"element" should be ".element"'],
-      correctAnswer: '"getElementsByClassName" returns a node list, not a single element',
+      answers: ['Incorrect use of "const"', `getElementsByClassName returns a node list, not a single element`, "You can't change CSS using JavaScript", `element should be .element`],
+      correctAnswer: `getElementsByClassName returns a node list, not a single element`,
       funcExample: `
       function changeColor(newColor){
         const el = document.getElementsByClassName('element')
         el.style.color = newColor
       }
       `,
-      explanation: "'getElementsByClassName' returns a node list (similar to an array) which must be iterated over like any other list."
+      explanation: `<b>getElementsByClassName returns a node list</b> (similar to an array) which must be iterated over like any other list.`
     },
     {
       //Question 9
@@ -110,7 +110,7 @@ const STORE = {
          return -1;
       };
       `,
-      explanation: "unnested for loops go through 'n' iterations that increase linearly with the the size of 'n', therefore the time complexity (or Big O notation) is O(n)."
+      explanation: "unnested for loops go through 'n' iterations <b>that increase linearly</b> with the the size of 'n', therefore the time complexity (or Big O notation) is O(n)."
     },
     {
       //Question 10
@@ -119,7 +119,7 @@ const STORE = {
       answers: ["time.split('')", "time.split(' ')", "time.split('2')", "time.split(':')"],
       correctAnswer: "time.split(':')",
       funcExample: `const time = "02:21"`,
-      explationation: 'time.split(":") will return ["02", "21"] because it was split on the colon.'
+      explanation: '<b>time.split(":")</b> will return ["02", "21"] because it was split on the colon.'
     }
   ],
   currentScore: 0,

@@ -1,31 +1,24 @@
 console.log("js loaded...");
 function beginQuiz() {
-  // get the index of the current question
-  const currentQuestionIndex = STORE.currentQuestion + 1;
-  // filter through the questions for the current question object
-  const currentQuestion = STORE.questions.filter(
-    question => question.id === currentQuestionIndex
-  )[0];
   // user clicks on start button to render the first question
   $("#start-btn").on("click", e => {
-    renderQuestion(currentQuestion, currentQuestionIndex);
+    renderQuestion();
   });
 }
 
-function updateCurrentQuestionAndScore(currentQuestion) {
-
-  const currentScore = STORE.currentScore;
+function updateCurrentQuestionAndScore() {
+  let currentQuestion = STORE.questions[STORE.currentQuestion];
   // // append current question # and next button to DOM footer
   $(".footer").html(
-    `<div id="question-tracker">Question: ${currentQuestion.id} / ${STORE.questions.length}</div>
-    <button id="next-btn" class="btn">Next <i class="fas fa-arrow-right"></i></button>`
+    `<div id="question-tracker">Question: ${currentQuestion.id} / ${STORE.questions.length}</div>`
   );
   // append current score to score div
-  $(".score").html(`Score: ${currentScore}`);
+  $(".score").html(`Score: ${STORE.currentScore * 10}%`);
 }
 
 // render function example for each question (if it exists)
-function renderFunc(currentQuestion) {
+function renderFunc() {
+  let currentQuestion = STORE.questions[STORE.currentQuestion];
   if (currentQuestion.funcExample !== null) {
     $(".code-box").html(`
     <pre>
@@ -37,7 +30,8 @@ function renderFunc(currentQuestion) {
 }
 
 // loops through options to display each on the DOM
-function renderAnswerOptions(currentQuestion) {
+function renderAnswerOptions() {
+  let currentQuestion = STORE.questions[STORE.currentQuestion];
   const answerList = currentQuestion.answers.map((answer, i) => {
     return `<label><input type="radio" clickable='true' class="answer" name="answer" id="answer${i +
       1}" value="${answer}" />${answer}</label>`;
@@ -45,36 +39,71 @@ function renderAnswerOptions(currentQuestion) {
   $(".answers").html(answerList);
 }
 
-function renderQuestion(currentQuestion, currentQuestionIndex) {
+function renderQuestion() {
+  let currentQuestion = STORE.questions[STORE.currentQuestion];
   $(".main-content").html(`
   <form id="quiz">
           <fieldset>
-            <legend>Question ${currentQuestionIndex}:</legend>
+            <legend>Question ${currentQuestion.id}:</legend>
             <h3>
               ${currentQuestion.question}
             </h3>
             <div class="code-box">
             </div>
+            <div id="alert"></div>
             <div class="answers">
             </div>
             <div class="answer-button">
-              <button class="btn" type="submit">Submit Answer</button>
+              <button id="submit-btn" class="btn" type="submit">Submit Answer</button>
+              <button id="next-btn" class="btn">Next <i class="fas fa-arrow-right"></i></button>
             </div>
           </fieldset>
         </form>
   `);
-  updateCurrentQuestionAndScore(currentQuestion);
-  renderFunc(currentQuestion);
-  renderAnswerOptions(currentQuestion);
-  handleUserSelection(currentQuestion);
+  $("#next-btn").hide();
+  updateCurrentQuestionAndScore();
+  renderFunc();
+  renderAnswerOptions();
 }
 
-function handleUserSelection(currentQuestion) {
+// function that handles when a user selects and submits an option
+function handleUserSelection() {
   $(".container").on("submit", "#quiz", function(e) {
     e.preventDefault();
+    let currentQuestion = STORE.questions[STORE.currentQuestion];
     const userAnswer = $("input[name=answer]:checked").val();
-    const correctAnswer = currentQuestion.correctAnswer
-    // -----------------continue here---------------------------//
+    const correctAnswer = currentQuestion.correctAnswer;
+    console.log(currentQuestion)
+    // verify user answers the question
+    if (!userAnswer) {
+      $("#alert").html("You must answer the question before moving on!");
+      return -1;
+    }
+    if (userAnswer === correctAnswer) {
+      $("#alert").html("correct!");
+      /* create a  green border around correct answer */
+      STORE.currentScore++;
+    } else {
+      /* create a red and green border around incorrect and correct answer */
+      $("#alert").html(`${currentQuestion.explanation}`);
+    }
+    STORE.currentQuestion++;
+    $(".score").html(`Score: ${STORE.currentScore * 10}%`);
+    $('input[name=answer]').attr('disabled', true);
+    $("#next-btn").show();
+    $("#submit-btn").hide();
+  });
+}
+
+function handleNextQuestion() {
+  $(".container").on("click", "#next-btn", function(e) {
+    e.preventDefault();
+    if (STORE.currentQuestion === STORE.questions.length) {
+      /* Need to build out display for user */
+      console.log("finished");
+    } else {
+      renderQuestion();
+    }
   });
 }
 
@@ -83,6 +112,8 @@ function restartQuiz() {}
 function handleQuizApp() {
   beginQuiz();
   restartQuiz();
+  handleUserSelection();
+  handleNextQuestion();
 }
 
 $(handleQuizApp);

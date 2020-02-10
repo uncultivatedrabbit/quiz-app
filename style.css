@@ -60,3 +60,6 @@ html {
 fieldset {
   border: 0;
 }
+#quiz {
+  width: 30%;
+}
