@@ -1,4 +1,3 @@
-console.log("js loaded...");
 function beginQuiz() {
   // user clicks on start button to render the first question
   $("#start-btn").on("click", e => {
@@ -35,7 +34,8 @@ function renderAnswerOptions() {
   let currentQuestion = STORE.questions[STORE.currentQuestion];
   const answerList = currentQuestion.answers.map((answer, i) => {
     return `<label><input type="radio" clickable='true' class="answer" name="answer" id="answer${i +
-      1}" value="${answer}" tabindex="${i + 1}"/>${answer}</label>`;
+      1}" value="${answer}" tabindex="${i +
+      1}"/>${answer.trim()}<span class="radio-btn"></span></label>`;
   });
   $(".answers").html(answerList);
 }
@@ -75,19 +75,33 @@ function handleUserSelection() {
     let currentQuestion = STORE.questions[STORE.currentQuestion];
     const userAnswer = $("input[name=answer]:checked").val();
     const correctAnswer = currentQuestion.correctAnswer;
-    console.log(currentQuestion);
     // verify user answers the question
     if (!userAnswer) {
       $("#alert").html("You must answer the question before moving on!");
       return -1;
     }
     if (userAnswer === correctAnswer) {
-      $("#alert").html("correct!");
+      let random = Math.floor(Math.random() * correctAnswerSelected.length);
+      $("#alert").html(correctAnswerSelected[random]);
+      $("input[name=answer]:checked")
+        .parent()
+        .addClass("correct");
       /* create a  green border around correct answer */
       STORE.currentScore++;
     } else {
       /* create a red and green border around incorrect and correct answer */
       $("#alert").html(`${currentQuestion.explanation}`);
+      let answerNodes = $(`input[name=answer]`);
+      let correctMissedAnswer = "";
+      for (let i = 0; i < answerNodes.length; i++) {
+        if (answerNodes[i].value === correctAnswer) {
+          correctMissedAnswer = answerNodes[i];
+        }
+      }
+      correctMissedAnswer.parentElement.classList.add("correct");
+      $("input[name=answer]:checked")
+        .parent()
+        .addClass("incorrect");
     }
     STORE.currentQuestion++;
     $(".score").html(`Score: ${STORE.currentScore * 10}%`);
@@ -103,6 +117,7 @@ function handleNextQuestion() {
     e.preventDefault();
     if (STORE.currentQuestion === STORE.questions.length) {
       displayQuizResults();
+      $("#question-tracker").hide();
     } else {
       renderQuestion();
     }
@@ -129,7 +144,7 @@ function displayQuizResults() {
   } else {
     $("#final-comment")
       .html(`<h4>You didn't quite pass. Baby yoda hopes you do better next time!</h4>
-    <img class="final-img" src="images/babyyodasad.gif" alt="baby yoda waving">`);
+    <img class="final-img" src="images/babyyodasad.gif" alt="baby yoda acting sad">`);
   }
   restartQuiz();
 }

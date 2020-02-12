@@ -106,7 +106,7 @@ const STORE = {
       // Question 9
       id: 9,
       question: "What is the time complexity of this function?",
-      answers: ['O(1)', 'O(N)', 'O(N^2)', 'O(logn)'],
+      answers: ['O(1)', 'O(N)', 'O(N^2)', 'O(log<sub>n</sub>)'],
       correctAnswer: 'O(N)',
       funcExample: `
       <span class="keyword">const</span> findIndex <span class="math">=</span> <span class="punc">(</span>items<span class="punc">,</span> match<span class="punc">)</span> <span class="math">=></span> <span class="punc">{</span>

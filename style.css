@@ -53,12 +53,32 @@ body {
 }
 
 h1 {
+  font-size: 1.1rem;
+}
+h2 {
   font-size: 1rem;
 }
-
 h3,
 #alert {
   font-size: 0.9rem;
+}
+
+.btn {
+  cursor: pointer;
+  height: 40px;
+  width: 150px;
+  background-color: transparent;
+  border: 2px solid #dcdde1;
+  border-radius: 5px;
+  color: #dcdde1;
+  letter-spacing: 2px;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background: #dcdde1;
+  color: #40739e;
+  transition: color 0.5s, background 0.5s;
 }
 
 /********* Grid Styling ***********/
@@ -99,14 +119,24 @@ footer,
   text-align: center;
 }
 
+.correct {
+  border: 2px solid #4cd137;
+  border-radius: 5px;
+}
+
+.incorrect {
+  border: 2px solid #c23616;
+  border-radius: 5px;
+}
+
 #submit-btn,
 #next-btn {
   margin: 15px 30px 0 0;
 }
 
 #alert {
-  margin-bottom: 10px;
-  color: #e1b12c
+  margin: 15px 0 15px 0;
+  color: #e1b12c;
 }
 
 fieldset {
@@ -119,6 +149,30 @@ fieldset {
 .footer {
   justify-content: center;
 }
+
+/* ----------------------------radio button styling ------------------------ */
+ label{
+  align-items: center;
+  display: flex;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+label:nth-child(1){
+  background: #2f3640;
+}
+label:nth-child(3) {
+  background: #718093;
+}
+label:nth-child(4){
+  background: #2f3640;
+}
+label:nth-child(2) {
+  background: #718093;
+}
+
+
+
 
 /*------------------------------- code box styling ---------------------------*/
 .code-box {
@@ -140,7 +194,7 @@ code {
   width: 100%;
   overflow: hidden;
 }
-pre{
+pre {
   padding-top: 15px;
 }
 
@@ -192,10 +246,16 @@ pre{
   h1 {
     font-size: 1.7rem;
   }
+  h2 {
+    font-size: 1.5rem;
+  }
   h3,
   #alert,
   #question-tracker,
   .score {
     font-size: 1.2rem;
   }
+}
+
+@media screen and (min-width: 600px) {
 }
