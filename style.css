@@ -1,65 +1,201 @@
 /********* Global Styling ***********/
 body,
 html {
-  margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
-  /* background: #111;
-  color: whitesmoke; */
+  font-family: "Open Sans", sans-serif;
 }
 
-.row{
+body {
+  margin: 0;
+  background: linear-gradient(
+    to top left,
+    #40739e 0%,
+    #40739e 50%,
+    #40739e 50%,
+    #487eb0 50%,
+    #487eb0 100%
+  ); /* W3C */
+  background: -webkit-linear-gradient(
+    to top left,
+    #40739e 0%,
+    #40739e 50%,
+    #40739e 50%,
+    #487eb0 50%,
+    #487eb0 100%
+  );
+  background: -o-linear-gradient(
+    to top left,
+    #40739e 0%,
+    #40739e 50%,
+    #40739e 50%,
+    #487eb0 50%,
+    #487eb0 100%
+  );
+  background: -moz-linear-gradient(
+    to top left,
+    #40739e 0%,
+    #40739e 50%,
+    #40739e 50%,
+    #487eb0 50%,
+    #487eb0 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: #dcdde1;
+}
+
+.row {
   display: flex;
   align-items: center;
   padding: 10px;
 }
 
+h1 {
+  font-size: 1rem;
+}
+
+h3,
+#alert {
+  font-size: 0.9rem;
+}
 
 /********* Grid Styling ***********/
 
 .answers {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: auto;
-}
-
-@media screen and (min-width: 1000px){
-  .answers{
-    grid-template-columns: auto auto;
-  }
+  grid-template-columns: auto auto;
 }
 
 /********* Header & Footer Styling ***********/
 
-.header-row, .footer {
+.header-row,
+.footer {
   justify-content: space-between;
   height: 10vh;
 }
-
 
 /********* Main Styling ***********/
 .container {
   height: 70vh;
 }
 
-.container, footer, .header-row {
+.container,
+footer,
+.header-row {
   width: 90vw;
   margin: 0 auto;
 }
-.main-content{
+.main-content {
   width: 100%;
   height: 100%;
   justify-content: center;
 }
 
-.start, .answer-button{
+.start,
+.answer-button {
   text-align: center;
+}
+
+#submit-btn,
+#next-btn {
+  margin: 15px 30px 0 0;
+}
+
+#alert {
+  margin-bottom: 10px;
+  color: #e1b12c
 }
 
 fieldset {
   border: 0;
 }
 #quiz {
-  width: 30%;
+  width: 100%;
+}
+
+.footer {
+  justify-content: center;
+}
+
+/*------------------------------- code box styling ---------------------------*/
+.code-box {
+  color: rgb(255, 255, 255);
+  tab-size: 1.5em;
+  background: rgb(40, 44, 52);
+  border-radius: 10px;
+  overflow: auto;
+  display: block;
+}
+pre,
+code {
+  font-size: 0.7rem;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  line-height: 1.2rem;
+  margin: -1.5rem;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+pre{
+  padding-top: 15px;
+}
+
+.keyword {
+  color: rgb(197, 165, 197);
+}
+
+.function {
+  color: rgb(121, 182, 242);
+}
+
+.punc {
+  color: rgb(136, 198, 190);
+}
+
+.tag {
+  color: rgb(252, 146, 158);
+}
+
+.math {
+  color: rgb(215, 222, 234);
+}
+
+.number {
+  color: rgb(252, 146, 158);
+}
+
+.string {
+  color: rgb(141, 200, 145);
+}
+
+.regex {
+  color: rgb(250, 200, 99);
+}
+
+.comment {
+  color: rgb(178, 178, 178);
+}
+
+@media screen and (min-width: 600px) {
+  pre,
+  code {
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+  #quiz {
+    max-width: 800px;
+  }
+  h1 {
+    font-size: 1.7rem;
+  }
+  h3,
+  #alert,
+  #question-tracker,
+  .score {
+    font-size: 1.2rem;
+  }
 }

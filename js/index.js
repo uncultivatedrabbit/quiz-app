@@ -6,6 +6,7 @@ function beginQuiz() {
   });
 }
 
+//
 function updateCurrentQuestionAndScore() {
   let currentQuestion = STORE.questions[STORE.currentQuestion];
   // // append current question # and next button to DOM footer
@@ -34,11 +35,12 @@ function renderAnswerOptions() {
   let currentQuestion = STORE.questions[STORE.currentQuestion];
   const answerList = currentQuestion.answers.map((answer, i) => {
     return `<label><input type="radio" clickable='true' class="answer" name="answer" id="answer${i +
-      1}" value="${answer}" />${answer}</label>`;
+      1}" value="${answer}" tabindex="${i + 1}"/>${answer}</label>`;
   });
   $(".answers").html(answerList);
 }
 
+// function renders each question
 function renderQuestion() {
   let currentQuestion = STORE.questions[STORE.currentQuestion];
   $(".main-content").html(`
@@ -54,8 +56,8 @@ function renderQuestion() {
             <div class="answers">
             </div>
             <div class="answer-button">
-              <button id="submit-btn" class="btn" type="submit">Submit Answer</button>
-              <button id="next-btn" class="btn">Next <i class="fas fa-arrow-right"></i></button>
+              <button id="submit-btn" class="btn" type="submit" tab-index="5">Submit Answer</button>
+              <button id="next-btn" class="btn" tab-index="10">Next <i class="fas fa-arrow-right"></i></button>
             </div>
           </fieldset>
         </form>
@@ -73,7 +75,7 @@ function handleUserSelection() {
     let currentQuestion = STORE.questions[STORE.currentQuestion];
     const userAnswer = $("input[name=answer]:checked").val();
     const correctAnswer = currentQuestion.correctAnswer;
-    console.log(currentQuestion)
+    console.log(currentQuestion);
     // verify user answers the question
     if (!userAnswer) {
       $("#alert").html("You must answer the question before moving on!");
@@ -89,29 +91,60 @@ function handleUserSelection() {
     }
     STORE.currentQuestion++;
     $(".score").html(`Score: ${STORE.currentScore * 10}%`);
-    $('input[name=answer]').attr('disabled', true);
+    $("input[name=answer]").attr("disabled", true);
     $("#next-btn").show();
     $("#submit-btn").hide();
   });
 }
 
+// checks if the quiz is over or if the user should move on to next question
 function handleNextQuestion() {
   $(".container").on("click", "#next-btn", function(e) {
     e.preventDefault();
     if (STORE.currentQuestion === STORE.questions.length) {
-      /* Need to build out display for user */
-      console.log("finished");
+      displayQuizResults();
     } else {
       renderQuestion();
     }
   });
 }
 
-function restartQuiz() {}
+// displays results depending on how well the user did.
+function displayQuizResults() {
+  const finalScore = STORE.currentScore;
+  $(".main-content").html(`
+  <div id="results">
+  <h3 id="final-score">Final Score: ${finalScore * 10}%</h3>
+  <div id="final-comment"></div>
+  <button id="restart-btn" class="btn">Start Over</button>
+  </div>`);
+  if (finalScore === STORE.questions.length) {
+    $("#final-comment")
+      .html(`<h4>Wow, congratulations! A perfect score, baby yoda is proud!</h4>
+    <img class="final-img" src="images/babyyodahappy.gif" alt="baby yoda smiling">`);
+  } else if (finalScore > 6 && finalScore < 10) {
+    $("#final-comment")
+      .html(`<h4>Not bad! A passing score is good enough for baby yoda!</h4>
+    <img class="final-img" src="images/babyyodamedium.gif" alt="baby yoda waving">`);
+  } else {
+    $("#final-comment")
+      .html(`<h4>You didn't quite pass. Baby yoda hopes you do better next time!</h4>
+    <img class="final-img" src="images/babyyodasad.gif" alt="baby yoda waving">`);
+  }
+  restartQuiz();
+}
+
+// resets current score and question to starting values and calls render question function
+function restartQuiz() {
+  $("#restart-btn").click(e => {
+    STORE.currentQuestion = 0;
+    STORE.currentScore = 0;
+    renderQuestion();
+  });
+}
 
 function handleQuizApp() {
   beginQuiz();
-  restartQuiz();
   handleUserSelection();
   handleNextQuestion();
 }
