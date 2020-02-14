@@ -139,6 +139,10 @@ footer,
   color: #e1b12c;
 }
 
+input:hover{
+  cursor: pointer;
+}
+
 fieldset {
   border: 0;
 }
@@ -158,19 +162,14 @@ fieldset {
   border-radius: 5px;
 }
 
-label:nth-child(1){
-  background: #2f3640;
-}
-label:nth-child(3) {
-  background: #718093;
-}
+label:nth-child(1),
 label:nth-child(4){
   background: #2f3640;
 }
+label:nth-child(3),
 label:nth-child(2) {
-  background: #718093;
+  background: #606c7c;
 }
-
 
 
 
@@ -257,5 +256,35 @@ pre {
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1000px) {
+  h1{
+    font-size: 2.5rem;
+  }
+  h2{
+    font-size: 2.2rem;
+  }
+  h3, legend{
+    font-size: 1.8rem;
+  }
+  #alert,
+  #question-tracker,
+  .score{
+    font-size: 1.5rem;
+  }
+  .btn{
+    height: 60px;
+    width: 180px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+  pre,
+  code {
+    font-size: 1.2rem;
+    line-height: 1.7rem;
+  }
+  img{
+    width: auto;
+    height: 400px;
+  }
 }

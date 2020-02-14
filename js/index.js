@@ -35,7 +35,7 @@ function renderAnswerOptions() {
   const answerList = currentQuestion.answers.map((answer, i) => {
     return `<label><input type="radio" clickable='true' class="answer" name="answer" id="answer${i +
       1}" value="${answer}" tabindex="${i +
-      1}"/>${answer.trim()}<span class="radio-btn"></span></label>`;
+      1}"/>${answer.trim()}</label>`;
   });
   $(".answers").html(answerList);
 }
